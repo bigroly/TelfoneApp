@@ -1,1 +1,52 @@
 <h2>Add a User</h2>
+<form 
+    class="new-user-form" 
+    novalidate
+    (ngSubmit)="addUser(userForm.value)"
+    #userForm="ngForm"
+    >
+    <mat-form-field class="user-form-input input-small">
+        <input matInput placeholder="First Name" value=""
+        required
+        [(ngModel)]="newUser.firstName"
+        name="firstName">
+    </mat-form-field>
+
+    <mat-form-field class="user-form-input input-small">
+        <input matInput placeholder="Last Name" value=""
+        required
+        [(ngModel)]="newUser.lastName"
+        name="lastName">
+    </mat-form-field>
+
+    <mat-form-field class="user-form-input input-small">
+        <input matInput placeholder="Display Name" value=""
+        required
+        [(ngModel)]="newUser.displayName"
+        name="displayName">
+    </mat-form-field>
+
+    <mat-form-field class="user-form-input input-large">
+        <input matInput placeholder="Descripion of Meal Preference" value=""
+        required
+        [(ngModel)]="newUser.description"
+        name="description">
+    </mat-form-field>
+
+    <mat-form-field class="user-form-input input-small">
+        <input matInput placeholder="Department" value=""
+        required
+        [(ngModel)]="newUser.department"
+        name="department">
+    </mat-form-field>
+
+    <mat-form-field class="user-form-input input-small">
+        <input matInput placeholder="Team" value=""
+        required
+        [(ngModel)]="newUser.team"
+        name="team">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" [disabled]="!userForm.valid" >Submit</button>
+
+</form>

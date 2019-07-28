@@ -9,14 +9,19 @@ import { User } from '../globals/models/user';
 })
 export class AddUserComponent implements OnInit {
 
-  private users: User[] = [];
+  private newUser: User;
 
   constructor(private userService: UserService) {
-
+    this.newUser = new User();
   }
 
   ngOnInit() {
 
+  }
+
+  private addUser(formValue: User) {
+    this.newUser = formValue;
+    console.log(this.newUser);
   }
 
 }
