@@ -10,6 +10,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './modules/angular-material.module';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { UserService } from './services/user.service';
 import { SearchUsersComponent } from './search-users/search-users.component';
 
@@ -26,6 +28,7 @@ import { SearchUsersComponent } from './search-users/search-users.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     UserService
