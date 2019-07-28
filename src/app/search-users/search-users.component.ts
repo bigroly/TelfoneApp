@@ -9,11 +9,26 @@ import { UserService } from '../services/user.service';
 })
 export class SearchUsersComponent implements OnInit {
 
-  private users: User[] = [];
+  private users: User[];
+  displayedColumns: string[] = [
+    'userId',
+    'firstName',
+    'lastName',
+    'displayName',
+    'description',
+    'department',
+    'team'
+  ];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+    this.users = [];
+  }
 
   ngOnInit() {
+    this.refreshUsers();
+  }
+
+  private refreshUsers() {
     this.userService.getUsers().then(response => {
       this.users = response.data;
     });

@@ -6,10 +6,10 @@ import { SearchUsersComponent } from './search-users/search-users.component';
 
 const routes: Routes = [
   {path: 'adduser', component: AddUserComponent},
-  {path: 'searchusers', component: SearchUsersComponent},
+  {path: 'viewusers', component: SearchUsersComponent},
   {
     path: '',
-    redirectTo: '/searchusers',
+    redirectTo: '/viewusers',
     pathMatch: 'full'
   }
 ];
