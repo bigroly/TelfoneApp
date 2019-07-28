@@ -1,12 +1,10 @@
-<div class="container-fluid">
-  <mat-sidenav-container>
-      <mat-sidenav class="mat-elevation-z5" [opened]="true" mode="side">
-        <app-navbar></app-navbar>
-      </mat-sidenav>
-      <div class="page-content">
-          <router-outlet>
-
-          </router-outlet>
-      </div>        
-  </mat-sidenav-container>
-</div>
+<mat-sidenav-container class="app-container">
+  <mat-sidenav mode="side" opened class="app-navbar">
+    <app-navbar></app-navbar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="router-container">
+        <router-outlet></router-outlet>
+    </div>    
+  </mat-sidenav-content>
+</mat-sidenav-container>
