@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../globals/models/user';
+import { Iuser } from '../models/Iuser';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserService } from '../services/user.service';
 })
 export class SearchUsersComponent implements OnInit {
 
-  private users: User[];
+  private users: Iuser[];
   displayedColumns: string[] = [
     'userId',
     'firstName',

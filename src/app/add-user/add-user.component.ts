@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User } from '../globals/models/user';
+import { User } from '../models/User';
 
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,7 +16,7 @@ export class AddUserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private toastrService: ToastrService) {
-    this.newUser = new User();
+      this.newUser = new User();
   }
 
   ngOnInit() {

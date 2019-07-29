@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import axios from 'axios';
 
-import { User } from '../globals/models/user';
+import { Iuser } from '../models/Iuser';
+import { HttpClient } from '@angular/common/http';
+import { IuserHttp } from '../models/user-http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public async getUsers() {
     const apiUrl = environment.apiUrl + environment.apiScopeKey + '/profiles';
@@ -20,7 +23,12 @@ export class UserService {
     }
   }
 
-  public async postUser(user: User) {
+  public getUsersV2(): Observable<IuserHttp> {
+    const apiUrl = environment.apiUrl + environment.apiScopeKey + '/profiles';
+    return this.http.get<IuserHttp>(apiUrl);
+  }
+
+  public async postUser(user: Iuser) {
     const apiUrl = environment.apiUrl + environment.apiScopeKey + '/profiles';
     try {
       return await axios.post(apiUrl, user);
