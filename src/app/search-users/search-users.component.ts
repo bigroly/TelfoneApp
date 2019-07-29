@@ -15,7 +15,7 @@ import { interval } from 'rxjs';
 export class SearchUsersComponent implements OnInit {
 
   private users$ = this.store.pipe(select(selectUserList));
-  private refreshInterval = interval(5000);
+  private refreshInterval = interval(30000);
 
   displayedColumns: string[] = [
     'userId',
