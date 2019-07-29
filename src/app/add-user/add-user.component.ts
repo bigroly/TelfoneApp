@@ -3,6 +3,11 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/User';
 
 import { ToastrService } from 'ngx-toastr';
+import { IappState } from '../store/state/app.state';
+
+import { Store } from '@ngrx/store';
+import { PostUser } from '../store/actions/user.actions';
+import { Actions } from '@ngrx/effects';
 
 @Component({
   selector: 'app-add-user',
@@ -15,7 +20,9 @@ export class AddUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private toastrService: ToastrService) {
+    private toastrService: ToastrService,
+    private store: Store<IappState>,
+    private storeUpdates$: Actions) {
       this.newUser = new User();
   }
 
@@ -30,6 +37,10 @@ export class AddUserComponent implements OnInit {
     } catch (err) {
       this.toastrService.error('There was an error submitting the user', 'failure');
     }
+  }
+
+  public addUserNgrx() {
+    this.store.dispatch(new PostUser(this.newUser));
   }
 
 }

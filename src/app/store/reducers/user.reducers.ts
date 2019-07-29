@@ -13,6 +13,10 @@ export const userReducers = (
             };
         }
 
+        case EuserActions.PostUserSuccess: {
+            return state;
+        }
+
         default:
             return state;
     }

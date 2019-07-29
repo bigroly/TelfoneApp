@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Iuser } from '../models/Iuser';
-import { UserService } from '../services/user.service';
 
 import { Store, select } from '@ngrx/store';
 
