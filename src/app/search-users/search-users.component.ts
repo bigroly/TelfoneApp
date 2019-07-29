@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { IappState } from '../store/state/app.state';
 import { selectUserList } from '../store/selectors/user.selector';
 import { GetUsers } from '../store/actions/user.actions';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-search-users',
@@ -13,7 +14,8 @@ import { GetUsers } from '../store/actions/user.actions';
 })
 export class SearchUsersComponent implements OnInit {
 
-  users$ = this.store.pipe(select(selectUserList));
+  private users$ = this.store.pipe(select(selectUserList));
+  private refreshInterval = interval(5000);
 
   displayedColumns: string[] = [
     'userId',
@@ -26,6 +28,7 @@ export class SearchUsersComponent implements OnInit {
   ];
 
   constructor(private store: Store<IappState>) {
+    this.refreshInterval.subscribe(intervalMet => this.refreshUsers());
   }
 
   ngOnInit() {
