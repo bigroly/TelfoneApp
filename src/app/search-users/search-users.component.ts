@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Iuser } from '../models/Iuser';
 import { UserService } from '../services/user.service';
 
+import { Store, select } from '@ngrx/store';
+
+import { IappState } from '../store/state/app.state';
+import { selectUserList } from '../store/selectors/user.selector';
+import { GetUsers } from '../store/actions/user.actions';
+
 @Component({
   selector: 'app-search-users',
   templateUrl: './search-users.component.html',
@@ -9,7 +15,8 @@ import { UserService } from '../services/user.service';
 })
 export class SearchUsersComponent implements OnInit {
 
-  private users: Iuser[];
+  users$ = this.store.pipe(select(selectUserList));
+
   displayedColumns: string[] = [
     'userId',
     'firstName',
@@ -20,8 +27,7 @@ export class SearchUsersComponent implements OnInit {
     'team'
   ];
 
-  constructor(private userService: UserService) {
-    this.users = [];
+  constructor(private store: Store<IappState>) {
   }
 
   ngOnInit() {
@@ -29,9 +35,7 @@ export class SearchUsersComponent implements OnInit {
   }
 
   private refreshUsers() {
-    this.userService.getUsers().then(response => {
-      this.users = response.data;
-    });
+    this.store.dispatch(new GetUsers());
   }
 
 }

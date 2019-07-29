@@ -4,7 +4,9 @@ import { Iuser } from '../../models/Iuser';
 
 export enum EuserActions {
     GetUsers = '[User] Get Users',
-    GetUsersSuccess = '[User] Get Users Success'
+    GetUsersSuccess = '[User] Get Users Success',
+    PostUser = '[User] Post User',
+    PostUserSuccess = '[User] Post User Success'
 }
 
 export class GetUsers implements Action {
@@ -16,4 +18,14 @@ export class GetUsersSuccess implements Action {
     constructor(public payload: Iuser[]) {}
 }
 
-export type UserActions = GetUsers | GetUsersSuccess ;
+export class PostUser implements Action {
+    public readonly type = EuserActions.PostUser;
+    constructor(public payload: Iuser) {}
+}
+
+export class PostUserSuccess implements Action {
+    public readonly type = EuserActions.PostUserSuccess;
+    constructor(public payload: any) {}
+}
+
+export type UserActions = GetUsers | GetUsersSuccess | PostUser |  PostUserSuccess;

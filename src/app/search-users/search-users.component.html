@@ -1,9 +1,5 @@
 <h2>View Users</h2>
-
-<h4 *ngIf="users.length === 0">No users were found! Click on 'Add Users' on the left to start adding them.</h4>
-<button mat-flat-button color="primary" (click)="refreshUsers()">Refresh</button>
-
-<table mat-table [dataSource]="users" class="mat-elevation-z4 user-table" *ngIf="users.length > 0">
+<table mat-table [dataSource]="users$ | async" class="mat-elevation-z4 user-table">
         
     <ng-container matColumnDef="userId">
         <th mat-header-cell *matHeaderCellDef> UserID </th>
@@ -43,3 +39,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<h1></h1>

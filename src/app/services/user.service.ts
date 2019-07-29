@@ -4,7 +4,6 @@ import axios from 'axios';
 
 import { Iuser } from '../models/Iuser';
 import { HttpClient } from '@angular/common/http';
-import { IuserHttp } from '../models/user-http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -23,9 +22,9 @@ export class UserService {
     }
   }
 
-  public getUsersV2(): Observable<IuserHttp> {
+  public getUsersV2(): Observable<Iuser[]> {
     const apiUrl = environment.apiUrl + environment.apiScopeKey + '/profiles';
-    return this.http.get<IuserHttp>(apiUrl);
+    return this.http.get<Iuser[]>(apiUrl);
   }
 
   public async postUser(user: Iuser) {
@@ -35,5 +34,10 @@ export class UserService {
     } catch (err) {
       throw err;
     }
+  }
+
+  public postUserV2(user: Iuser): Observable<any> {
+    const apiUrl = environment.apiUrl + environment.apiScopeKey + '/profiles';
+    return this.http.post(apiUrl, user);
   }
 }
