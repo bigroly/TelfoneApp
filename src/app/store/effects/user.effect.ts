@@ -10,6 +10,8 @@ import { GetUsers, GetUsersSuccess, EuserActions, PostUser, PostUserSuccess } fr
 import { UserService } from '../../services/user.service';
 import { Iuser } from 'src/app/models/Iuser';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Injectable()
 export class UserEffects {
     @Effect()
@@ -26,13 +28,14 @@ export class UserEffects {
         ofType<PostUser>(EuserActions.PostUser),
         switchMap((action) => this.userService.postUserV2(action.payload)),
         switchMap((response: any) => of(
-            new PostUserSuccess(response)
+            new PostUserSuccess(response, this.toastrService)
         ))
     );
 
     constructor(
         private userService: UserService,
         private actions$: Actions,
-        private store: Store<IappState>
+        private store: Store<IappState>,
+        private toastrService: ToastrService
     ) {}
 }

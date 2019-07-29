@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { Iuser } from '../../models/Iuser';
+import { ToastrService } from 'ngx-toastr';
 
 export enum EuserActions {
     GetUsers = '[User] Get Users',
@@ -25,7 +26,9 @@ export class PostUser implements Action {
 
 export class PostUserSuccess implements Action {
     public readonly type = EuserActions.PostUserSuccess;
-    constructor(public payload: any) {}
+    constructor(public payload: any, private toastrService: ToastrService) {
+        this.toastrService.success('New user was added.', 'Successs!');
+    }
 }
 
 export type UserActions = GetUsers | GetUsersSuccess | PostUser |  PostUserSuccess;
